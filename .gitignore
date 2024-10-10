@@ -1,0 +1,16 @@
+!/.env*.erb
+!/log/.keep
+!/storage/.keep
+!/tmp/.keep
+!/tmp/pids/
+!/tmp/pids/.keep
+!/tmp/storage/
+!/tmp/storage/.keep
+/.bundle
+/.env*
+/config/master.key
+/log/*
+/storage/*
+/tmp/*
+/tmp/pids/*
+/tmp/storage/*

@@ -1,0 +1,39 @@
+services:
+  app:
+    build:
+      dockerfile: Dockerfile.dev
+    command: ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      - REDIS_URL=redis://redis
+      - REDIS_PROVIDER=REDIS_URL
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+
+  postgres:
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    image: postgres:17.0-alpine3.20
+    ports:
+      - 5432:5432
+
+  redis:
+    image: redis:7.4-alpine3.20
+    ports:
+      - 6379:6379
+
+  sidekiq:
+    build:
+      dockerfile: Dockerfile.dev
+    command: ["bundle", "exec", "sidekiq"]
+    depends_on:
+      - redis
+    environment:
+      - REDIS_URL=redis://redis
+      - REDIS_PROVIDER=REDIS_URL
+    volumes:
+      - .:/app
