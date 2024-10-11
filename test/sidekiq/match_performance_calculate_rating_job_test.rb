@@ -3,7 +3,7 @@
 require "test_helper"
 
 class MatchPerformanceCalculateRatingJobTest < ActionDispatch::IntegrationTest
-  def test_example
+  test "#perform works" do
     match_performance = create(:match_performance)
 
     MatchPerformanceCalculateRatingJob.new.perform(match_performance.id)
