@@ -12,6 +12,7 @@ class MatchPerformance < ApplicationRecord
   }, prefix: true, validate: true
 
   validates :role, presence: true
+  validates :rating, numericality: { allow_blank: true }
   validates :goals, numericality: { only_integer: true }, presence: true
   validates :passes, numericality: { only_integer: true }, presence: true
   validates :saves, numericality: { only_integer: true }, presence: true
